@@ -1,0 +1,64 @@
+{
+  "name": "form-relay/password-provider",
+  "type": "library",
+  "description": "FormRelay Data Provider for randomly generated passwords.",
+  "keywords": [
+    "framework",
+    "form",
+    "data",
+    "submission",
+    "relay",
+    "password",
+    "formhandler"
+  ],
+  "homepage": "https://www.mediatis.de",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Michael Vöhringer",
+      "role": "Developer"
+    },
+    {
+      "name": "Meelis Karulin",
+      "role": "Developer"
+    },
+    {
+      "name": "Damian Ickler",
+      "role": "Developer"
+    },
+    {
+      "name": "Stephan Ude",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.1",
+    "form-relay/core": "^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "FormRelay\\PasswordProvider\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FormRelay\\PasswordProvider\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/",
+    "testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/",
+
+    "unit-test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/Unit/",
+    "unit-testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/Unit/",
+
+    "integration-test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/Integration/",
+    "integration-testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/Integration/"
+  }
+}

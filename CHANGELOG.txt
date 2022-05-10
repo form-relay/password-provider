@@ -1,0 +1,7 @@
+
+1.0.0
+
+[TASK] initial implementation
+* service: PasswordGenerator
+* utility: PasswordUtility
+* data provider: PasswordDataProvider
