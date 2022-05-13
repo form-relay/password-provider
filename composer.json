@@ -56,9 +56,6 @@
     "testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/",
 
     "unit-test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/Unit/",
-    "unit-testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/Unit/",
-
-    "integration-test": "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/Integration/",
-    "integration-testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/Integration/"
+    "unit-testdox": "./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox --colors=always tests/Unit/"
   }
 }
