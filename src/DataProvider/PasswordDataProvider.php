@@ -12,16 +12,15 @@ use FormRelay\PasswordProvider\Service\PasswordGeneratorInterface;
 
 class PasswordDataProvider extends DataProvider
 {
-    public const KEY_FIELD = 'field';
-    public const DEFAULT_FIELD = 'password';
-
-    public const KEY_GENERATOR_OPTIONS = 'generator';
-    public const DEFAULT_GENERATOR_OPTIONS = [
-        'minLength' => 8,
-        'maxLength' => 12,
-        'alphabetOptions' => [],
+    public const KEY_PASSWORDS = 'passwords';
+    public const DEFAULT_PASSWORDS = [
+        'password' => [
+            'minLength' => 8,
+            'maxLength' => 12,
+            'alphabetOptions' => [],
+        ],
     ];
-
+    
     /** @var PasswordGeneratorInterface */
     protected $passwordGenerator;
 
@@ -33,15 +32,20 @@ class PasswordDataProvider extends DataProvider
 
     protected function processContext(SubmissionInterface $submission, RequestInterface $request): void
     {
-        $password = $this->passwordGenerator->generate(
-            $this->getConfig(static::KEY_GENERATOR_OPTIONS)
-        );
-        $submission->getContext()['password'] = $password;
+        $passwords = $this->getConfig(static::KEY_PASSWORDS);
+        foreach($passwords as $field => $generatorOptions) {
+            $password = $this->passwordGenerator->generate(
+                $generatorOptions
+            );
+            $submission->getContext()['passwords'][$field] = $password;
+        }
     }
 
     protected function process(SubmissionInterface $submission): void
     {
-        $this->setFieldFromContext($submission, 'password', $this->getConfig(static::KEY_FIELD));
+        foreach($submission->getContext()['passwords'] as $field => $password) {
+            $this->setField($submission, $field, $password);
+        }
     }
 
     /**
@@ -50,8 +54,7 @@ class PasswordDataProvider extends DataProvider
     public static function getDefaultConfiguration(): array
     {
         return parent::getDefaultConfiguration() + [
-            static::KEY_FIELD => static::DEFAULT_FIELD,
-            static::KEY_GENERATOR_OPTIONS => static::DEFAULT_GENERATOR_OPTIONS,
+            static::KEY_PASSWORDS => static::DEFAULT_PASSWORDS,
         ];
     }
 }
